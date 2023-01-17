@@ -1,0 +1,31 @@
+.header-container {
+  max-width: 1200px;
+  padding: 24px 0;
+  margin: auto;
+
+  .login-nav {
+    height: 48px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    gap: 16px;
+
+    a {
+      position: relative;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: gray;
+      border-radius: 50%;
+      top: calc(50% - 2px);
+      right: -10px;
+    }
+
+    a:last-child::after {
+      background-color: transparent;
+    }
+  }
+}

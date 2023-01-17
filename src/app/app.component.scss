@@ -1,14 +1,32 @@
 .inline-block {
-    display: flex;
-    gap: 12px;
-}
-
-.navbar-collapse {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .navbar {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+
+  .nav-list-container {
+    max-width: 1200px;
+    min-width: 550px;
+    width: 100%;
+    padding: 0 12px;
+
+    .dropdown {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-collapse {
+      justify-content: space-between;
+    }
+  }
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
