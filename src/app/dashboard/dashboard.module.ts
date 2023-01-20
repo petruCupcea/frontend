@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 
-import { AnnouncesComponent, RecommendationComponent } from './components';
+import { AnnouncesComponent, GadgetLoversComponent, RecommendationComponent } from './components';
 import { DashboardRouting } from './dashboard-routing.module';
 import { DashboardPage } from './pages';
 
@@ -12,8 +12,10 @@ import { DashboardPage } from './pages';
   declarations: [
     AnnouncesComponent,
     DashboardPage,
+    GadgetLoversComponent,
     RecommendationComponent,
   ],
   providers: [],
 })
-export class DashboardModule { }
+export class DashboardModule {
+}
