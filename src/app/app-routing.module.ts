@@ -9,8 +9,12 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    loadChildren: () => import("./dashboard/dashboard.module").then(module => module.DashboardModule),
-  }
+    loadChildren: () => import("./dashboard").then(module => module.DashboardModule),
+  },
+  {
+    path: "login",
+    loadChildren: () => import("./login").then(module => module.LoginModule)
+  },
 ];
 
 @NgModule({
