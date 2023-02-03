@@ -12,6 +12,7 @@
     max-width: 1200px;
     min-width: 550px;
     width: 100%;
+    height: 60px;
     padding: 0 12px;
 
     .dropdown {
@@ -21,6 +22,14 @@
 
     .navbar-collapse {
       justify-content: space-between;
+    }
+
+    .inline-block {
+      gap: 8px;
+
+      .btn {
+        flex-shrink: 0;
+      }
     }
   }
 }
