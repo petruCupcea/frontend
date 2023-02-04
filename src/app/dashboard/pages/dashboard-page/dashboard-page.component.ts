@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+
+import { ApiClientService } from "common/request";
 
 
 @Component({
@@ -6,9 +8,21 @@ import { Component } from "@angular/core";
   templateUrl: "dashboard-page.component.html",
   styleUrls: ["dashboard-page.component.scss"],
 })
-export class DashboardPage {
+export class DashboardPage implements OnInit {
 
-  constructor() {
+  constructor(private readonly apiClientService: ApiClientService) {
+  }
+
+
+  ngOnInit() {
+    this.getCategories();
+  }
+
+
+  private getCategories() {
+    this.apiClientService.call('get_categories').subscribe((data) => {
+      console.log(data);
+    })
   }
 
 }

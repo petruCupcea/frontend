@@ -15,7 +15,8 @@ import {
     HttpClientModule,
   ],
   declarations: [],
-  providers: [],
+  providers: [
+  ],
 })
 export class RequestsModule {
 

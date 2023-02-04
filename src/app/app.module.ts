@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
+import { Injector, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login';
+import { ApiErrorHandler, RequestsModule } from "../../common/request";
 
 
 @NgModule({
@@ -14,8 +15,10 @@ import { LoginModule } from './login';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    RequestsModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
