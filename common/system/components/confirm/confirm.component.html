@@ -1,0 +1,33 @@
+<div class="ui modal confirm-popup"
+     [ngClass]="[confirmData?.theme || '', confirmData?.size || '']"
+     #confirmModal>
+
+  <div class="header">
+    <span>
+    </span>
+
+    <div class="header-actions"
+         *ngIf="confirmData?.closable === true && !loadingAction"
+         (click)="release(false)">
+      <i class="close icon"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <p></p>
+  </div>
+
+  <div class="actions">
+    <button class="ui positive button" [disabled]="loadingAction" (click)="release(true)">
+      <loader-block
+        *ngIf="loadingAction"
+        [size]="'tiny'"
+        [inline]="true">
+      </loader-block>
+    </button>
+
+    <button class="ui basic button" [disabled]="loadingAction" (click)="release(false)">
+    </button>
+  </div>
+
+</div>

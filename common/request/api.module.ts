@@ -7,15 +7,20 @@ import {
   ApiErrorHandler,
   AuthInterceptorService,
 } from './services';
+import { SystemModule } from "../system";
 
 
 @NgModule({
   imports: [
+    SystemModule,
     CommonModule,
     HttpClientModule,
   ],
   declarations: [],
   providers: [
+    ApiErrorHandler,
+    ApiClientService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
   ],
 })
 export class RequestsModule {
@@ -24,8 +29,8 @@ export class RequestsModule {
     return {
       ngModule: RequestsModule,
       providers: [
-        ApiErrorHandler,
         ApiClientService,
+        ApiErrorHandler,
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
         data.configProvider,
       ],

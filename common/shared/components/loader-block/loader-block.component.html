@@ -1,0 +1,11 @@
+<div class="loader-block-component {{size ? ('size-' + size) : ''}}"
+     *ngIf="!useMaterial"
+     [ngClass]="{'inline': inline, 'ui inverted dimmer active': dimmer}">
+  <div class="ui loader active fix-z-index {{size}}" [ngClass]="{'inline': inline, 'inverted': inverted}"></div>
+</div>
+
+<div class="material-loader-block" *ngIf="useMaterial">
+  <svg class="spinner" width="64px" height="64px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+    <circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+  </svg>
+</div>

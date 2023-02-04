@@ -4,6 +4,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DateHelper, Environment } from 'common/core/classes';
+import { idGenerator } from 'common/core/lib';
+import { SessionService } from 'common/core/services/session.service';
+
 
 import {
   ApiError,
@@ -12,7 +16,6 @@ import {
   ApiRequestOptions,
   ApiRequestQueueItem,
   ApiResponse,
-  RequestsModuleConfig,
 } from '../structures';
 import { ApiErrorHandler } from './api-errorhandler.service';
 
@@ -22,23 +25,14 @@ export class ApiClientService {
 
   private lock: boolean;
   private readonly queue: Array<ApiRequestQueueItem>;
-
-
-  private static generateId(prefix?: string): string {
-    const id = (prefix ? prefix : '') +
-      Math.floor(Math.random() * 1000000).toString(16) +
-      Math.floor(Math.random() * 1000000).toString(16) +
-      Math.floor(Math.random() * 1000000).toString(16);
-
-    return id;
-  }
+  private readonly tabSessionId: string;
 
 
   private static generatePerfActionId(body: any): string {
     const perfActionId = (
       (body && body.operation && body.operation === 'log_perf') ?
-        ApiClientService.generateId('log_performance|') :
-        (body && body.operation && body.operation === 'log_errors') ? ApiClientService.generateId('log_errors|') : undefined
+        idGenerator('log_performance|') :
+        (body && body.operation && body.operation === 'log_errors') ? idGenerator('log_errors|') : undefined
     );
 
     return perfActionId;
@@ -48,10 +42,12 @@ export class ApiClientService {
   constructor(
     private readonly http: HttpClient,
     private readonly apiErrorHandler: ApiErrorHandler,
-    private readonly requestsModuleConfig: RequestsModuleConfig,
+    private readonly sessionService: SessionService,
+    private readonly environment: Environment,
   ) {
     this.queue = [];
     this.lock = false;
+    this.tabSessionId = this.sessionService.getTabSessionId();
   }
 
 
@@ -61,7 +57,12 @@ export class ApiClientService {
       additionalOptions.headers = new HttpHeaders();
     }
     additionalOptions.headers = additionalOptions.headers.set('GTK-Operation', key);
-    this.setupCustomHeaders(additionalOptions);
+    additionalOptions.headers = additionalOptions.headers.set('GTK-Tab-Id', this.tabSessionId);
+    additionalOptions.headers = additionalOptions.headers.set('GTK-Timezone-Offset', DateHelper.getTimezoneUTC());
+    additionalOptions.headers = additionalOptions.headers.set(
+      'GTK-Timezone-Region',
+      Intl?.DateTimeFormat()?.resolvedOptions()?.timeZone || '',
+    );
     const requestConfig: ApiRequestDefinition = this.buildRequestConfig(key, body, additionalOptions);
     const queueItem = new ApiRequestQueueItem(requestConfig, additionalOptions.skipDefaultErrorHandler);
     this.triggerNextInQueue(queueItem);
@@ -79,11 +80,11 @@ export class ApiClientService {
 
 
   private buildRequestConfig(key: string, body: ApiRequestBody, additionalOptions: ApiRequestOptions): ApiRequestDefinition {
-    const version: ApiRequestBody = {version: this.requestsModuleConfig.version};
+    const version: ApiRequestBody = {version: this.environment.version};
 
     const request: ApiRequestDefinition = {
       method: additionalOptions.method,
-      url: (this.requestsModuleConfig.apiBaseUrl + additionalOptions.path),
+      url: this.environment.apiBaseUrl + additionalOptions.path,
       sync: additionalOptions.sync,
     };
 
@@ -141,20 +142,20 @@ export class ApiClientService {
     let observable$: Observable<any>;
     const requestUrl: string = (typeof item.request.url === 'function' ? item.request.url(item.request.body) : item.request.url);
     switch (item.request.method) {
-    case 'GET':
-      observable$ = this.get(requestUrl, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
-      break;
-    case 'POST':
-      observable$ = this.post(requestUrl, item.request.body, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
-      break;
-    case 'PUT':
-      observable$ = this.put(requestUrl, item.request.body, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
-      break;
-    case 'DELETE':
-      observable$ = this.delete(requestUrl, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
-      break;
-    default:
-      throw new Error('Wrong request format(' + item.request.method + ')');
+      case 'GET':
+        observable$ = this.get(requestUrl, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
+        break;
+      case 'POST':
+        observable$ = this.post(requestUrl, item.request.body, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
+        break;
+      case 'PUT':
+        observable$ = this.put(requestUrl, item.request.body, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
+        break;
+      case 'DELETE':
+        observable$ = this.delete(requestUrl, item.request.params, item.request.headers, item.skipDefaultErrorHandler);
+        break;
+      default:
+        throw new Error('Wrong request format(' + item.request.method + ')');
     }
 
     return observable$;
@@ -222,7 +223,7 @@ export class ApiClientService {
   private delete(url: string, params?: HttpParams, headers?: HttpHeaders, skipDefaultErrorHandler?: boolean): Observable<any> {
     const perfKey = 'DELETE ' + url + (params && params.has('operation') ? ' - ' + params.get('operation') : '');
 
-    const request =  this.http.delete<ApiResponse>(url, {params, headers})
+    const request = this.http.delete<ApiResponse>(url, {params, headers})
       .pipe(
         map(this.handleResponse),
         catchError((err) => {
@@ -254,16 +255,6 @@ export class ApiClientService {
 
   private checkSuccess(response: ApiResponse): any {
     return response && response.status === 'success';
-  }
-
-
-  private setupCustomHeaders(additionalOptions: ApiRequestOptions) {
-    const customHeaders = this.requestsModuleConfig.customHeaders;
-    for (const key in customHeaders) {
-      if (customHeaders.hasOwnProperty(key)) {
-        additionalOptions.headers = additionalOptions.headers.set(key, customHeaders[key]());
-      }
-    }
   }
 
 }

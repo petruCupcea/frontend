@@ -1,0 +1,21 @@
+<div class="ui modal alert-popup" [ngClass]="[alertData?.theme || '', alertData?.size || '']" #alertModal>
+
+  <div class="header">
+    <span>
+    </span>
+
+    <div class="header-actions" (click)="close()" *ngIf="alertData?.closable === true">
+      <i class="close icon"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <p *ngFor="let alert of alertService.stack"></p>
+  </div>
+
+  <div class="actions">
+    <button class="ui basic small button" (click)="release()">
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="ui master checkbox" *ngIf="indeterminate !== undefined"
+     [indeterminate]="indeterminate"
+     [isChecked]="(selectableCollection.collection?.length > 0) && 
+                  (selectedItem?.length === selectableCollection.collection?.length)">
+
+  <input #selection class="hidden" type="checkbox" (change)="selectAllItems(selection)"/>
+  <label></label>
+
+</div>
+
+<div class="ui child checkbox" *ngIf="indeterminate === undefined">
+  <input #selection class="hidden" type="checkbox" (change)="selectSingleItem(selection)" [checked]="checkForPreselect()"/>
+  <label></label>
+</div>

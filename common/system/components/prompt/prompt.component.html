@@ -1,0 +1,79 @@
+<div class="ui modal prompt-popup"
+     [ngClass]="[promptData?.theme || '', promptData?.size || '']"
+     [formGroup]="promptFormGroup" #promptModal>
+
+  <div class="header">
+
+    <div class="header-actions"
+         *ngIf="promptData?.closable === true && !loadingAction"
+         (click)="dismiss()">
+      <i class="close icon"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="message"
+         *ngIf="promptData?.message">
+    </div>
+
+    <div class="ui form">
+      <div class="field" *ngIf="promptData?.promptType === 'text'">
+        <input
+          type="text"
+          formControlName="result"/>
+      </div>
+
+      <div class="field" *ngIf="promptData?.promptType === 'email'">
+        <input
+          type="email"
+          formControlName="result"
+          [email]="true"/>
+      </div>
+
+      <div class="field" *ngIf="promptData?.promptType === 'password'">
+        <input
+          type="password"
+          formControlName="result"/>
+      </div>
+
+      <div class="field" *ngIf="promptData?.promptType === 'textarea'">
+        <textarea rows="4"
+                  formControlName="result">
+        </textarea>
+      </div>
+
+      <div class="grouped fields" *ngIf="promptData?.promptType === 'radio'">
+        <div class="field" *ngFor="let item of promptData?.promptOptions">
+          <div class="ui radio checkbox">
+            <input type="radio" formControlName="result" [value]="item.value" class="hidden">
+            <label>
+              <span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-after"
+         *ngIf="promptData?.messageAfter">
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="ui positive button"
+            [disabled]="promptFormGroup.invalid || loadingAction"
+            (click)="submit()">
+      Accept
+      <loader-block
+        *ngIf="loadingAction"
+        [size]="'tiny'"
+        [inline]="true">
+      </loader-block>
+    </button>
+
+    <button class="ui basic button" type="button" [disabled]="loadingAction" (click)="dismiss()">
+      Refuse
+    </button>
+  </div>
+</div>
