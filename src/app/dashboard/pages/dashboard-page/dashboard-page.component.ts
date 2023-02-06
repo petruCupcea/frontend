@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import { ApiClientService } from "common/request";
+import { ApiRequestService } from "../../../api-module";
 
 
 @Component({
@@ -10,7 +10,7 @@ import { ApiClientService } from "common/request";
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private readonly apiClientService: ApiClientService) {
+  constructor(private readonly apiRequestService: ApiRequestService) {
   }
 
 
@@ -20,7 +20,7 @@ export class DashboardPage implements OnInit {
 
 
   private getCategories() {
-    this.apiClientService.call('get_categories').subscribe((data) => {
+    this.apiRequestService.callOperation('get_categories').subscribe((data) => {
       console.log(data);
     })
   }

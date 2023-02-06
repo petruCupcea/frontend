@@ -1,14 +1,10 @@
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { SystemService } from "common/system";
-import { ApiErrorHandler, RequestsModule } from "common/request";
-import { Environment } from "common/core";
-import { environmentFactory } from "common/core/core.module";
+import { HttpClient } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
+import { ApiRequestModule } from "./api-module";
 import { AppRoutingModule } from './app-routing.module';
-import { ApiCustomErrorHandler } from "./shared";
 import { LoginModule } from './login';
 
 
@@ -20,12 +16,9 @@ import { LoginModule } from './login';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    RequestsModule,
+    ApiRequestModule,
   ],
-  providers: [
-    {provide: ApiErrorHandler, useClass: ApiCustomErrorHandler, deps: [SystemService, Injector]},
-    {provide: Environment, useFactory: environmentFactory},
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
