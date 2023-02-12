@@ -1,3 +1,7 @@
-<div class="box-container">
-  <span class="title">Anunțuri</span>
+<div class="box-container bg-light shadow-sm">
+  <span class="title bg-light">Anunțuri</span>
+
+  <div class="link-container">
+    <p *ngFor="let category of categories" class="category-link link-secondary">{{category?.name}}</p>
+  </div>
 </div>

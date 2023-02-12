@@ -1,1 +1,1 @@
-export { ApiCustomErrorHandler } from './api-custom-errorhandler.class';
+export { BaseComponent } from './base-component.class';

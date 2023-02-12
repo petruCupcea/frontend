@@ -1,6 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-
-import { ApiRequestService } from "../../../api-module";
+import { Component } from "@angular/core";
 
 
 @Component({
@@ -8,21 +6,9 @@ import { ApiRequestService } from "../../../api-module";
   templateUrl: "dashboard-page.component.html",
   styleUrls: ["dashboard-page.component.scss"],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage {
 
-  constructor(private readonly apiRequestService: ApiRequestService) {
-  }
-
-
-  ngOnInit() {
-    this.getCategories();
-  }
-
-
-  private getCategories() {
-    this.apiRequestService.callOperation('get_categories').subscribe((data) => {
-      console.log(data);
-    })
+  constructor() {
   }
 
 }

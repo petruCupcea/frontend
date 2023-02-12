@@ -1,11 +1,11 @@
-import { Injector, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { ApiRequestModule } from "./api-module";
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login';
+import { ProductsModule } from './products';
 
 
 @NgModule({
@@ -14,9 +14,10 @@ import { LoginModule } from './login';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     LoginModule,
+    ProductsModule,
     ApiRequestModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
