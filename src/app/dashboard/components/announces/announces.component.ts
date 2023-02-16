@@ -3,6 +3,7 @@ import { takeUntil } from 'rxjs';
 
 import { ApiRequestService } from '../../../api-module';
 import { BaseComponent } from '../../../shared';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,11 @@ export class AnnouncesComponent extends BaseComponent implements OnInit {
 
   categories: Array<any>;
 
-  constructor(private readonly apiRequestService: ApiRequestService) {
+
+  constructor(
+    private readonly apiRequestService: ApiRequestService,
+    private readonly router: Router,
+  ) {
     super();
   }
 
@@ -24,8 +29,15 @@ export class AnnouncesComponent extends BaseComponent implements OnInit {
   }
 
 
+  goToCategoryListPage(item: {categoryId: any; name: any}) {
+    this.router.navigate(
+      ['products/category-list'],
+      {queryParams: {categoryId: item.categoryId, name: item.name}}).then()
+  }
+
+
   private setCategories() {
-    this.apiRequestService.callOperation('get_categories')
+    this.apiRequestService.callOperation('get_groups')
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {

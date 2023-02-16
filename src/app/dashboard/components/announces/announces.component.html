@@ -2,6 +2,11 @@
   <span class="title bg-light">Anunțuri</span>
 
   <div class="link-container">
-    <p *ngFor="let category of categories" class="category-link link-secondary">{{category?.name}}</p>
+    <p
+      *ngFor="let category of categories"
+      class="category-link link-secondary"
+      (click)="goToCategoryListPage({categoryId: category?.id, name: category?.name})">
+      {{category?.name}}
+    </p>
   </div>
 </div>

@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoriesList } from './pages';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "category-list",
+    component: CategoriesList,
+  },
+];
 
 
 @NgModule({
