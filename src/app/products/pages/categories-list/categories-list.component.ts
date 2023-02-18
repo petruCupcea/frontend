@@ -15,6 +15,7 @@ export class CategoriesList extends BaseComponent implements OnInit {
 
   groupName: string;
   groupId: number;
+  categoryList: Array<any>;
 
 
   constructor(
@@ -42,12 +43,26 @@ export class CategoriesList extends BaseComponent implements OnInit {
 
 
   private getCategories() {
-    this.apiRequestService.callOperation('get_categories')
+    this.apiRequestService.callOperation('get_categories', {groupId: this.groupId})
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {
-          console.log(data);
+          this.categoryList = data.payload;
+          this.categoryList.forEach((item) => {
+            this.setSubCategories(item);
+          });
         }
+      })
+  }
+
+
+  private setSubCategories(category: any) {
+    this.apiRequestService.callOperation('get_subcategories', {categoryId: category.id})
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe({
+        next: (data) => {
+          category['subCategoryList'] = data.payload;
+        },
       })
   }
 

@@ -3,6 +3,11 @@
   </div>
   <h2>{{groupName}}</h2>
   <div class="categories-container">
-
+    <div *ngFor="let category of categoryList" class="category-box">
+      <h5>{{category?.name}}</h5>
+      <div *ngFor="let subcategory of category?.subCategoryList">
+        <p class="link-secondary">{{subcategory?.name}}</p>
+      </div>
+    </div>
   </div>
 </div>

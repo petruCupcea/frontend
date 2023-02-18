@@ -7,14 +7,11 @@ import { Observable } from "rxjs";
 @Injectable()
 export class ApiRequestService {
 
-  constructor(
-    private readonly httpClient: HttpClient,
-  ) {
-  }
+  constructor(private readonly httpClient: HttpClient) {}
 
 
-  callOperation(operation: string): Observable<any> {
-    return this.httpClient.post('http://localhost:3000/json_processor', {operation: operation});
+  callOperation(operation: string, payload?: any): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/json_processor', {operation: operation, payload: payload});
   }
 
 
