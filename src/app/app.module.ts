@@ -6,6 +6,7 @@ import { ApiRequestModule } from "./api-module";
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login';
 import { ProductsModule } from './products';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,8 @@ import { ProductsModule } from './products';
     LoginModule,
     ProductsModule,
     ApiRequestModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
   ],
   providers: [],
