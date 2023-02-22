@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { takeUntil } from 'rxjs';
 
 import { ApiRequestService } from '../../../api-module';
 import { BaseComponent } from '../../../shared';
-import { takeUntil } from 'rxjs';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs';
   templateUrl: 'register.component.html',
   styleUrls: ['register.component.scss'],
 })
-export class RegisterComponent extends BaseComponent {
+export class RegisterComponent extends BaseComponent implements OnInit {
 
   formGroup: UntypedFormGroup;
 
@@ -29,6 +29,11 @@ export class RegisterComponent extends BaseComponent {
       password: new FormControl('', [Validators.required]),
       repeatPassword: new FormControl('', [Validators.required])
     })
+  }
+
+
+  ngOnInit() {
+    this.getUsers();
   }
 
 
