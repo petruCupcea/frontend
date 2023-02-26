@@ -9,6 +9,7 @@ import { LoginModule } from './login';
 import { ProductsModule } from './products';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared';
+import { PersonalCabinet } from './personal-cabinet';
 
 
 @NgModule({
@@ -16,14 +17,15 @@ import { SharedModule } from './shared';
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    LoginModule,
-    ProductsModule,
     ApiRequestModule,
     FormsModule,
     CommonModule,
     SharedModule.forRoot(),
     ReactiveFormsModule,
+    BrowserModule,
+    LoginModule,
+    ProductsModule,
+    PersonalCabinet,
     AppRoutingModule,
   ],
   providers: [],
