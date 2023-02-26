@@ -14,12 +14,11 @@ export class AuthenticateService extends BaseComponent {
 
 
   constructor(
-    private readonly sessionControlService: SessionControlService,
     private readonly apiRequestService: ApiRequestService,
+    private readonly sessionControlService: SessionControlService,
   ) {
     super();
     this.loggedIn = new BehaviorSubject<boolean>(false);
-    console.log('service');
   }
 
 

@@ -1,7 +1,13 @@
 <div class="page-container">
   <div class="swiper-container">
   </div>
-  <h2>{{groupName}}</h2>
+  <span class="title-header">
+    <h2>{{groupName}}</h2>
+    <p class="link-primary" [routerLink]="'../../dashboard'">
+      <i class="bi bi-arrow-up-left-circle"></i>
+      Dashboard
+    </p>
+  </span>
   <div class="categories-container">
     <div *ngFor="let category of categoryList" class="category-box">
       <h5>{{category?.name}}</h5>
