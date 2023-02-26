@@ -23,7 +23,12 @@
       </ul>
       <form class="form-inline inline-block my-2 my-lg-0">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Adaugă anunț</button>
+        <button *ngIf="!userLogged" class="btn btn-outline-success" [routerLink]="'login/authenticate'">
+          Adaugă anunț
+        </button>
+        <button *ngIf="userLogged" class="btn btn-success" [routerLink]="'products/add-category-list'">
+          Adaugă anunț
+        </button>
       </form>
     </div>
   </div>

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
-import { ApiRequestService } from '../../../api-module';
 import { BaseComponent } from '../../../shared';
+import { ApiRequestService } from '../../../api-module';
 
 
 @Component({
-  selector: 'announces',
-  templateUrl: 'announces.component.html',
-  styleUrls: ['announces.component.scss']
+  selector: 'add-category-list',
+  templateUrl: 'add-category-list.component.html',
+  styleUrls: ['add-category-list.component.scss'],
 })
-export class AnnouncesComponent extends BaseComponent implements OnInit {
+export class AddCategoryList extends BaseComponent implements OnInit {
 
   categories: Array<any>;
 
@@ -31,7 +31,7 @@ export class AnnouncesComponent extends BaseComponent implements OnInit {
 
   goToCategoryListPage(item: {categoryId: any; name: any}) {
     this.router.navigate(
-      ['products/category-list'],
+      ['products/add-subcategory-list'],
       {queryParams: {categoryId: item.categoryId, name: item.name}}).then()
   }
 
@@ -39,10 +39,8 @@ export class AnnouncesComponent extends BaseComponent implements OnInit {
   private setCategories() {
     this.apiRequestService.callOperation('get_groups')
       .pipe(takeUntil(this.onDestroy))
-      .subscribe({
-        next: (data) => {
-          this.categories = data.payload
-        }
+      .subscribe((data) => {
+        this.categories = data.payload;
       })
   }
 

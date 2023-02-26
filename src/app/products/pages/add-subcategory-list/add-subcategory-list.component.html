@@ -1,0 +1,17 @@
+<div class="page-container">
+  <span class="title-header">
+    <h2>Alegeți subcategoria</h2>
+    <p class="link-primary" [routerLink]="'../add-category-list'">
+      <i class="bi bi-arrow-up-left-circle"></i>
+      {{groupName}}
+    </p>
+  </span>
+  <div class="categories-container">
+    <div *ngFor="let category of categoryList" class="category-box">
+      <h5>{{category?.name}}</h5>
+      <div *ngFor="let subcategory of category?.subCategoryList">
+        <p class="link-secondary">{{subcategory?.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>

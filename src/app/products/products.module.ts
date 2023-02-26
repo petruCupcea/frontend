@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 
 import { ProductsRoutingModule } from './products-routing.module';
-import { CategoriesList } from './pages';
-import { NgForOf } from '@angular/common';
+import { AddCategoryList, AddSubcategoryList, CategoriesList } from './pages';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   imports: [
     ProductsRoutingModule,
-    NgForOf,
+    CommonModule,
   ],
   declarations: [
+    AddCategoryList,
+    AddSubcategoryList,
     CategoriesList,
   ],
   providers: [],

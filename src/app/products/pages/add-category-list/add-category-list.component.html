@@ -1,0 +1,13 @@
+<div class="page-container">
+  <span class="title-header">
+    <h2>Alegeți categoria</h2>
+    <p class="link-primary">Nu știți ce categorie să alegeți?</p>
+  </span>
+  <div class="categories-container d-flex flex-column flex-sm-wrap">
+    <p *ngFor="let category of categories"
+       class="category-link link-secondary"
+       (click)="goToCategoryListPage({categoryId: category?.id, name: category?.name})">
+      {{category?.name}}
+    </p>
+  </div>
+</div>
