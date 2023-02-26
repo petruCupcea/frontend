@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { AuthenticateService, AuthExpireTriggerService, SessionControlService, SessionTimerService } from './services';
 
 
 @NgModule({
@@ -7,4 +8,26 @@ import { NgModule } from '@angular/core';
   providers: [],
   bootstrap: []
 })
-export class SharedModule { }
+export class SharedModule {
+
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        AuthenticateService,
+        AuthExpireTriggerService,
+        SessionControlService,
+        SessionTimerService,
+      ],
+    }
+  }
+
+
+  static forChild(): ModuleWithProviders<SharedModule> {
+    return {
+      ngModule: SharedModule,
+      providers: [],
+    };
+  }
+
+}

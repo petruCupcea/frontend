@@ -5,12 +5,16 @@ import { LoginTile } from './components';
 import { LoginComponent, RegisterComponent } from './pages';
 import { LoginRoutingModule } from './login-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   imports: [
     LoginRoutingModule,
     RouterLinkWithHref,
+    SharedModule.forChild(),
+    CommonModule,
     ReactiveFormsModule,
   ],
   exports: [

@@ -1,7 +1,22 @@
-<div class="header-container">
+<div *ngIf="!isLogged" class="header-container">
   <div class="login-nav d-flex justify-content-end">
-    <a
-      class="text-secondary text-decoration-none" routerLink="login/register">Înregistrare</a>
-    <a class="text-secondary text-decoration-none" routerLink="login">Autentificare</a>
+    <a class="text-secondary text-decoration-none" [routerLink]="'login/register'">
+      Înregistrare
+    </a>
+    <a class="text-secondary text-decoration-none" [routerLink]="'login/authenticate'">
+      Autentificare
+    </a>
+  </div>
+</div>
+<div *ngIf="isLogged" class="header-container">
+  <div class="login-nav d-flex justify-content-end">
+    <a class="text-secondary text-decoration-none" [routerLink]="'personal'">
+      <i class="bi bi-person-video3"></i>
+      Cabinetul personal
+    </a>
+    <a class="text-secondary text-decoration-none" [routerLink]="'settings'">
+      <i class="bi bi-sliders"></i>
+      Setări
+    </a>
   </div>
 </div>

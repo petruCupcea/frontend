@@ -1,6 +1,9 @@
 <div class="page-container">
   <form class="bg-light shadow-sm" [formGroup]="formGroup">
-    <h3>Autentificare</h3>
+    <h3>
+      Autentificare
+      <i class="bi bi-person-check"></i>
+    </h3>
     <div class="form-outline mb-4">
       <label class="form-label" for="form2Example1">Email address</label>
       <input formControlName="email" type="email" id="form2Example1" class="form-control"/>
@@ -28,6 +31,11 @@
       type="button"
       class="btn btn-primary btn-block mb-4"
       [disabled]="formGroup.invalid"
-      (click)="loginRequest()">Sign in</button>
+      (click)="loginRequest()">
+      Sign in
+    </button>
+    <p *ngIf="errorMessage" class="text-danger">
+      {{errorMessage}}
+    </p>
   </form>
 </div>

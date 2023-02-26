@@ -28,12 +28,11 @@ export class RegisterComponent extends BaseComponent implements OnInit {
       phoneNumber: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       repeatPassword: new FormControl('', [Validators.required])
-    })
+    });
   }
 
 
   ngOnInit() {
-    this.getUsers();
   }
 
 
@@ -43,18 +42,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
     }
     this.apiRequestService.callOperation('create_user', {...this.formGroup.getRawValue()})
       .pipe(takeUntil(this.onDestroy))
-      .subscribe(() => {
-        this.getUsers();
-      })
-  }
-
-
-  getUsers() {
-    this.apiRequestService.callOperation('get_users')
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe((data) => {
-        console.log(data.payload);
-      })
+      .subscribe();
   }
 
 }
