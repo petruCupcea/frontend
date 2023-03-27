@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '../../../shared';
@@ -21,6 +21,7 @@ export class CategoriesList extends BaseComponent implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly apiRequestService: ApiRequestService,
+    private readonly router: Router,
   ) {
     super();
   }
@@ -29,6 +30,12 @@ export class CategoriesList extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getRouteParams();
     this.getCategories();
+  }
+
+
+  navigateToProductList(id: string) {
+    this.router.navigate(['../product-list'],
+      {queryParams: {subcategoryId: id}}).then();
   }
 
 

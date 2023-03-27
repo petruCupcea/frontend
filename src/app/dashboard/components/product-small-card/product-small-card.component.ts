@@ -29,7 +29,6 @@ export class ProductSmallCardComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.imageObject = data.payload;
-          console.log(this.imageObject);
         },
       })
   }

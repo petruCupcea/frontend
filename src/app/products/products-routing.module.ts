@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AddCategoryList, AddSubcategoryList, CategoriesList } from './pages';
+import { AddCategoryList, AddSubcategoryList, CategoriesList, ProductListComponent } from './pages';
 
 
 const routes: Routes = [
@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: "add-subcategory-list",
     component: AddSubcategoryList,
+  },
+  {
+    path: "product-list",
+    component: ProductListComponent,
   },
 ];
 

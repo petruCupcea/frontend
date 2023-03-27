@@ -34,7 +34,6 @@ export class RecommendationComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.products = data.payload;
-          console.log(this.products);
         }
       });
   }

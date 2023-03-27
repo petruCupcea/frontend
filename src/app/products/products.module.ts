@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { ProductsRoutingModule } from './products-routing.module';
-import { AddCategoryList, AddSubcategoryList, CategoriesList } from './pages';
+import { AddCategoryList, AddSubcategoryList, CategoriesList, ProductListComponent } from './pages';
 import { CommonModule } from '@angular/common';
 
 
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
     AddCategoryList,
     AddSubcategoryList,
     CategoriesList,
+    ProductListComponent,
   ],
   providers: [],
 })
