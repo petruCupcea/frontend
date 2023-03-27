@@ -14,6 +14,8 @@ import { ApiRequestService } from '../../../api-module';
 export class ProductListComponent extends BaseComponent implements OnInit {
 
   subcategoryId: string;
+  subcategoryName: string;
+  groupName: string;
   productList: any;
 
 
@@ -34,6 +36,9 @@ export class ProductListComponent extends BaseComponent implements OnInit {
     this.activatedRoute.queryParams.pipe(takeUntil(this.onDestroy)).subscribe({
       next: (params) => {
         this.subcategoryId = params['subcategoryId'];
+        this.groupName = params['groupName'];
+        this.subcategoryName = params['subcategoryName'];
+        console.log(this.groupName);
       }
     });
   }

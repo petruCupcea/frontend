@@ -33,9 +33,16 @@ export class CategoriesList extends BaseComponent implements OnInit {
   }
 
 
-  navigateToProductList(id: string) {
+  navigateToProductList(id: string, name: string) {
     this.router.navigate(['../product-list'],
-      {queryParams: {subcategoryId: id}}).then();
+      {
+        queryParams: {
+          groupId: this.groupId,
+          groupName: this.groupName,
+          subcategoryId: id,
+          subcategoryName: name,
+        },
+      }).then();
   }
 
 

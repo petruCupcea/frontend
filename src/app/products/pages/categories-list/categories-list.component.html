@@ -12,7 +12,10 @@
     <div *ngFor="let category of categoryList" class="category-box">
       <h5>{{category?.name}}</h5>
       <div *ngFor="let subcategory of category?.subCategoryList">
-        <p class="link-secondary" (click)="navigateToProductList(subcategory.id)">{{subcategory?.name}}</p>
+        <p class="link-secondary"
+           (click)="navigateToProductList(subcategory?.id, subcategory?.name)">
+          {{subcategory?.name}}
+        </p>
       </div>
     </div>
   </div>

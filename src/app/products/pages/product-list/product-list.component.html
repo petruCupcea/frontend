@@ -1,1 +1,28 @@
-<p>product-list works!</p>
+<div class="page-container">
+  <div class="swiper-container">
+  </div>
+  <span class="title-header">
+    <h2>Produse</h2>
+    <p class="link-primary" [routerLink]="'../dashboard'">
+      <i class="bi bi-arrow-up-left-circle"></i>
+      Dashboard
+    </p>
+  </span>
+  <div class="main-container">
+    <div class="products-container">
+      <product-card *ngFor="let item of productList" [product]="item"></product-card>
+    </div>
+    <div class="filters-container">
+      <div class="subscribe-category bg-light">
+        <h6>{{this.subcategoryName}}</h6>
+        <hr>
+        <div class="switch-container">
+          <p class="text-secondary">Abonare</p>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

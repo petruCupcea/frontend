@@ -1,10 +1,17 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+
 import { AuthenticateService, AuthExpireTriggerService, SessionControlService, SessionTimerService } from './services';
+import { ProductCardComponent } from './components';
 
 
 @NgModule({
-  declarations: [],
   imports: [],
+  declarations: [
+    ProductCardComponent,
+  ],
+  exports: [
+    ProductCardComponent,
+  ],
   providers: [],
   bootstrap: []
 })
