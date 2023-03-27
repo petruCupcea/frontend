@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs';
+
+import { ApiRequestService } from '../../../api-module';
+import { BaseComponent } from '../../../shared';
 
 
 @Component({
@@ -6,9 +10,33 @@ import { Component } from '@angular/core';
   templateUrl: 'recommendation.component.html',
   styleUrls: ['recommendation.component.scss']
 })
-export class RecommendationComponent {
+export class RecommendationComponent extends BaseComponent implements OnInit {
 
-  constructor() {
+  products: any;
+  url: any;
+
+
+  constructor(
+    private readonly apiRequestService: ApiRequestService,
+  ) {
+    super();
+  }
+
+
+  ngOnInit() {
+    this.setProducts();
+  }
+
+
+  private setProducts() {
+    this.apiRequestService.callOperation('get_products')
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe({
+        next: (data) => {
+          this.products = data.payload;
+          console.log(this.products);
+        }
+      });
   }
 
 }

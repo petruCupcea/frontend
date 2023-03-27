@@ -4,6 +4,7 @@ import { AnnouncesComponent, GadgetLoversComponent, RecommendationComponent } fr
 import { DashboardRouting } from './dashboard-routing.module';
 import { DashboardPage } from './pages';
 import { NgForOf } from '@angular/common';
+import { ProductSmallCardComponent } from './components/product-small-card/product-small-card.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NgForOf } from '@angular/common';
     DashboardPage,
     GadgetLoversComponent,
     RecommendationComponent,
+    ProductSmallCardComponent,
   ],
   providers: [],
 })
