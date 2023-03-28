@@ -26,6 +26,7 @@ export class ProductListComponent extends BaseComponent implements OnInit {
     super();
   }
 
+
   ngOnInit() {
     this.getRouteParams();
     this.setProductList();

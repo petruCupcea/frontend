@@ -1,1 +1,98 @@
-<p>transport-filter works!</p>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+        Marcă
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ng-container *ngFor="let item of carBrands; let index = index">
+          <div *ngIf="index < 10" class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" [id]="item.id">
+            <label class="form-check-label text-secondary" [for]="item.id">
+              {{item?.markName}}
+            </label>
+          </div>
+        </ng-container>
+        <p *ngIf="!showMoreCarBrands" class="text-primary" (click)="showMoreCarBrands = !showMoreCarBrands">Mai
+          multe</p>
+        <p *ngIf="showMoreCarBrands" class="text-primary" (click)="showMoreCarBrands = !showMoreCarBrands">Mai
+          puține</p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+              aria-expanded="false" aria-controls="collapseTwo">
+        Sortează după
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="priceAscending">
+          <label class="form-check-label text-secondary" for="priceAscending">
+            Preț (crescător)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="priceDescending">
+          <label class="form-check-label text-secondary" for="priceDescending">
+            Preț (descrescător)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="alphabetAscending">
+          <label class="form-check-label text-secondary" for="alphabetAscending">
+            Alfabet (A-z)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="alphabetDescending">
+          <label class="form-check-label text-secondary" for="alphabetDescending">
+            Alfabet (Z-a)
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false" aria-controls="collapseThree">
+        Preț
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="price-container">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">De la</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1">
+            <label for="exampleFormControlInput2" class="form-label">Pâna la</label>
+            <input type="number" class="form-control" id="exampleFormControlInput2">
+          </div>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Valută</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="MDL">MDL</option>
+          </select>
+          <hr>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label text-secondary" for="flexCheckDefault">
+              Afișarea anunțurilor cu preț negociabil
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
