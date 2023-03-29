@@ -1,0 +1,81 @@
+<div class="page-container">
+  <div class="swiper-container">
+  </div>
+  <span class="title-header">
+    <h2>Detalii produs</h2>
+    <p class="link-primary" [routerLink]="'../dashboard'">
+      <i class="bi bi-arrow-up-left-circle"></i>
+      Produse
+    </p>
+  </span>
+  <div class="main-container">
+    <div class="product-container">
+      <h3>
+        {{product?.name}}
+        <i *ngIf="!favoriteProduct" class="bi bi-bookmark-heart" (click)="favoriteProduct = !favoriteProduct"></i>
+        <i *ngIf="favoriteProduct" class="bi bi-bookmark-heart-fill" (click)="favoriteProduct = !favoriteProduct"></i>
+      </h3>
+      <p class="text-secondary">{{group?.name + ' / ' + subcategory?.name}}</p>
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-inner">
+          <div *ngIf="productImages" class="carousel-item active">
+            <img [src]="productImages[0]?.image" alt=""/>
+          </div>
+          <ng-container *ngFor="let item of productImages; let index = index">
+            <div *ngIf="index !== 0" class="carousel-item">
+              <img [src]="item?.image" alt=""/>
+            </div>
+          </ng-container>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="description">
+        <h5>Descriere:</h5>
+        <p class="text-secondary">{{product?.description}}</p>
+        <h5>Preț: </h5>
+        <button class="price-button btn btn-outline-primary">{{product?.price + ' ' + product?.currency}}</button>
+        <h5>Nu vă aranjează prețul? </h5>
+        <div class="negotiate-container bg-light">
+          <p class="text-secondary"><i class="bi bi-chat-left-dots"></i> Propuneți vânzătorului prețul Dvs.</p>
+          <button class="price-button btn btn-success">Negociați</button>
+        </div>
+        <h5>Anunțuri recomandate:</h5>
+      </div>
+    </div>
+    <div class="product-review">
+      <div class="review-container bg-light">
+        <h6 *ngIf="!favoriteProduct" (click)="favoriteProduct = !favoriteProduct">
+          <i class="bi bi-bookmark-heart"></i>
+          Adăugă la favorite
+        </h6>
+        <h6 *ngIf="favoriteProduct" class="text-success" (click)="favoriteProduct = !favoriteProduct">
+          <i class="bi bi-bookmark-heart-fill"></i>
+          Adăugat la favorite
+        </h6>
+        <h6><i class="bi bi-hand-thumbs-down"></i> Reclamațiе</h6>
+        <p class="text-secondary small">Pentru a plasa o reclamațiе apăsați <span class="link-primary">aici</span>.</p>
+        <h6><i class="bi bi-printer"></i> Imprimare</h6>
+        <p class="text-secondary small">Pentru a face o imprimare apăsați <span class="link-primary">aici</span>.</p>
+      </div>
+
+      <div class="review-container bg-light">
+        <p>Trimiteți un mesaj</p>
+        <div class="accordion-body">
+          <div class="mb-3">
+            <textarea class="form-control" placeholder="Către proprietar..." rows="3"></textarea>
+          </div>
+          <button class="btn btn-primary">Trimiteți</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,9 +8,10 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
   max-height: 170vh;
+  padding-left: 64px;
 
   .category-box {
     width: 250px;

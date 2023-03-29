@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
+
 import { ApiRequestService } from '../../../api-module';
 import { BaseComponent } from '../../../shared';
+
 
 @Component({
   selector: 'product-small-card',
@@ -14,7 +17,10 @@ export class ProductSmallCardComponent extends BaseComponent implements OnInit {
   imageObject: any;
 
 
-  constructor(private readonly apiRequestService: ApiRequestService) {
+  constructor(
+    private readonly apiRequestService: ApiRequestService,
+    private readonly router: Router,
+  ) {
     super();
   }
 
@@ -22,6 +28,14 @@ export class ProductSmallCardComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.setProductImage()
   }
+
+
+  goToProductPage() {
+    this.router.navigate(
+      ['../products/product-page'],
+      {queryParams: {productId: this.product.id}}).then();
+  }
+
 
   private setProductImage() {
     this.apiRequestService.callOperation('get_single_image', {id: this.product.id})

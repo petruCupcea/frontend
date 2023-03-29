@@ -39,7 +39,6 @@ export class ProductListComponent extends BaseComponent implements OnInit {
         this.subcategoryId = params['subcategoryId'];
         this.groupName = params['groupName'];
         this.subcategoryName = params['subcategoryName'];
-        console.log(this.groupName);
       }
     });
   }

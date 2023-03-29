@@ -41,7 +41,8 @@ export class AnnouncesComponent extends BaseComponent implements OnInit {
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {
-          this.categories = data.payload
+          this.categories = data.payload;
+          console.log(this.categories);
         }
       })
   }

@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AddCategoryList, AddSubcategoryList, CategoriesList, ProductListComponent } from './pages';
+import {
+  AddCategoryList,
+  AddSubcategoryList,
+  CategoriesList,
+  ProductListComponent,
+  ProductPageComponent
+} from './pages';
 
 
 const routes: Routes = [
@@ -21,6 +27,10 @@ const routes: Routes = [
     path: "product-list",
     component: ProductListComponent,
   },
+  {
+    path: "product-page",
+    component: ProductPageComponent,
+  },
 ];
 
 
@@ -28,4 +38,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProductsRoutingModule { }
+export class ProductsRoutingModule {
+}

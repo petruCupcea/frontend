@@ -5,12 +5,14 @@ import { DashboardRouting } from './dashboard-routing.module';
 import { DashboardPage } from './pages';
 import { NgForOf } from '@angular/common';
 import { ProductSmallCardComponent } from './components/product-small-card/product-small-card.component';
+import { SharedModule } from '../shared';
 
 
 @NgModule({
   imports: [
     DashboardRouting,
     NgForOf,
+    SharedModule,
   ],
   declarations: [
     AnnouncesComponent,

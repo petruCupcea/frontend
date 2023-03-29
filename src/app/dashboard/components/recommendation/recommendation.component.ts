@@ -29,7 +29,7 @@ export class RecommendationComponent extends BaseComponent implements OnInit {
 
 
   private setProducts() {
-    this.apiRequestService.callOperation('get_products')
+    this.apiRequestService.callOperation('get_recommended_products')
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {

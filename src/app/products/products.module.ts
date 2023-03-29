@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
-import { AddCategoryList, AddSubcategoryList, CategoriesList, ProductListComponent } from './pages';
-import { CommonModule } from '@angular/common';
+import { AddCategoryList, AddSubcategoryList, CategoriesList, ProductListComponent, ProductPageComponent } from './pages';
 import { SharedModule } from '../shared';
 import { TransportFilterComponent } from './components';
+import { AddProductPageComponent } from './pages/add-product-page/add-product-page.component';
 
 
 @NgModule({
@@ -19,6 +20,8 @@ import { TransportFilterComponent } from './components';
     CategoriesList,
     ProductListComponent,
     TransportFilterComponent,
+    ProductPageComponent,
+    AddProductPageComponent,
   ],
   providers: [],
 })

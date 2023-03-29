@@ -1,4 +1,4 @@
-<div class="product-card d-flex flex-column">
+<div class="product-card d-flex flex-column" (click)="goToProductPage()">
   <img [src]="imageObject?.image"/>
   <h6>{{product?.name}}</h6>
   <p class="text-secondary">{{product?.price + ' ' + product?.currency}}</p>
