@@ -42,7 +42,6 @@ export class AnnouncesComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.categories = data.payload;
-          console.log(this.categories);
         }
       })
   }

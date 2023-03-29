@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../../shared';
 import { takeUntil } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+
+import { BaseComponent } from '../../../shared';
 
 @Component({
   selector: 'add-product-page',

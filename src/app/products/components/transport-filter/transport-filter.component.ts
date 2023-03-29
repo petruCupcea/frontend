@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiRequestService } from '../../../api-module';
 import { takeUntil } from 'rxjs';
+
+import { ApiRequestService } from '../../../api-module';
 import { BaseComponent } from '../../../shared';
+
 
 @Component({
   selector: 'transport-filter',

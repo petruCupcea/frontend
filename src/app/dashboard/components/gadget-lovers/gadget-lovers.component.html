@@ -1,6 +1,36 @@
 <h5>Pentru pasionații de gadgeturi și tehnică:</h5>
 <div class="container">
-  <product-card></product-card>
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-flex gap-3 align-items-center justify-content-center">
+          <ng-container *ngFor="let item of productList; let index = index">
+            <product-card *ngIf="index < 4" [product]="item"></product-card>
+          </ng-container>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="d-flex gap-3 align-items-center justify-content-center">
+          <ng-container *ngFor="let item of productList; let index = index">
+            <product-card *ngIf="index > 3" [product]="item"></product-card>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-secondary rounded" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-secondary rounded" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+
+    </button>
+  </div>
 </div>
 <h5>Alte produse: </h5>
-  <product-card></product-card>
+<product-card></product-card>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+
 import { BaseComponent } from '../../../shared';
 import { ApiRequestService } from '../../../api-module';
+
 
 @Component({
   selector: 'product-page',

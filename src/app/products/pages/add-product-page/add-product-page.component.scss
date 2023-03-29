@@ -1,6 +1,7 @@
 .main-container {
   display: flex;
   gap: 32px;
+  padding-bottom: 128px;
 
 
   .form-container {
@@ -34,6 +35,24 @@
         width: 100px;
       }
     }
+
+    .contacts {
+      .bg-light {
+        margin: 8px 0;
+        padding: 24px 16px;
+        border-radius: 4px;
+      }
+    }
+
+    .d-flex {
+      input {
+        flex-shrink: 0;
+      }
+    }
+
+    .btn-lg {
+      margin-top: 16px;
+    }
   }
 
   .info-container {
@@ -43,7 +62,7 @@
 
     .bg-light {
       padding: 24px 16px;
-      border-radius: 8px;
+      border-radius: 4px;
     }
   }
 }
