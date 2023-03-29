@@ -1,1 +1,61 @@
-<p>add-product-page works!</p>
+<div class="page-container">
+  <div class="swiper-container">
+  </div>
+  <span class="title-header">
+    <h2>Adaugă produs</h2>
+    <p class="link-primary" [routerLink]="'../dashboard'">
+      <i class="bi bi-arrow-up-left-circle"></i>
+      Dashboard
+    </p>
+  </span>
+  <div class="main-container">
+    <div class="form-container">
+      <h4>Completați anunțul</h4>
+      <h6 class="text-secondary">Categoria / Subcategoria:</h6>
+      <div class="category-container form-control-container">
+        <select class="form-select">
+          <option selected>{{groupName}}</option>
+          <option value="1">One</option>
+        </select>
+        <select class="form-select">
+          <option selected>{{subcategoryName}}</option>
+          <option value="1">One</option>
+        </select>
+      </div>
+      <h6 class="text-secondary">Tip ofertă:</h6>
+      <div class="d-flex gap-2 form-control-container">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" checked>
+        <label class="form-check-label"> Vând</label>
+      </div>
+      <h6 class="text-secondary">Textul anunțului:</h6>
+      <div class="mb-3 form-control-container">
+        <textarea class="form-control" rows="5"></textarea>
+      </div>
+      <h6 class="text-secondary">Preț:</h6>
+      <div class="form-control-container price-container">
+        <input class="form-control">
+        <select class="form-select">
+          <option value="MDL" selected>MDL</option>
+          <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
+        </select>
+        <div class="d-flex gap-2">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Negociabil
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="bg-light">
+        <p class="text-secondary">
+          <i class="bi bi-info-circle text-primary"></i>
+          Nu găsiți specificațiile de care aveți nevoie? Contactați serviciul suport clienți
+          la numărul de telefon<span class="link-primary">022 888 002</span> sau trimiteți un
+          e-mail la<span class="link-primary">info@marketPlace.md</span> și îl vom adăuga pe site.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

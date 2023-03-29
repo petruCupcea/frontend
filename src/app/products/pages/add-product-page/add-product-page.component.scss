@@ -1,0 +1,49 @@
+.main-container {
+  display: flex;
+  gap: 32px;
+
+
+  .form-container {
+    min-width: 450px;
+    width: 100%;
+    padding-left: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .category-container {
+      display: flex;
+      gap: 32px;
+    }
+
+    .form-control-container {
+      padding-left: 16px;
+    }
+
+    .price-container {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .form-control {
+        width: 200px;
+      }
+
+      select {
+        width: 100px;
+      }
+    }
+  }
+
+  .info-container {
+    width: 250px;
+    flex-shrink: 0;
+    padding-top: 96px;
+
+    .bg-light {
+      padding: 24px 16px;
+      border-radius: 8px;
+    }
+  }
+}

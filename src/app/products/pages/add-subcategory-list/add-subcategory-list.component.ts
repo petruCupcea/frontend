@@ -33,6 +33,20 @@ export class AddSubcategoryList extends BaseComponent implements OnInit {
   }
 
 
+  goToAddProductPage(id: string, name: string) {
+    this.router.navigate(
+      ['../add-product-page'],
+      {
+        queryParams: {
+          groupId: this.groupId,
+          groupName: this.groupName,
+          subcategoryId: id,
+          subcategoryName: name,
+        }
+      }).then();
+  }
+
+
   private getRouteParams() {
     this.activatedRoute.queryParams.pipe(takeUntil(this.onDestroy)).subscribe({
       next: (params) => {
@@ -53,7 +67,7 @@ export class AddSubcategoryList extends BaseComponent implements OnInit {
             this.setSubCategories(item);
           });
         }
-      })
+      });
   }
 
 

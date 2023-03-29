@@ -1,4 +1,5 @@
 export { AddCategoryList } from './add-category-list/add-category-list.component';
+export { AddProductPageComponent } from './add-product-page/add-product-page.component';
 export { AddSubcategoryList } from './add-subcategory-list/add-subcategory-list.component';
 export { CategoriesList } from './categories-list/categories-list.component';
 export { ProductListComponent } from './product-list/product-list.component';

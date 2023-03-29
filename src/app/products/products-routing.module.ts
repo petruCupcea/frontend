@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   AddCategoryList,
   AddSubcategoryList,
+  AddProductPageComponent,
   CategoriesList,
   ProductListComponent,
   ProductPageComponent
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: "product-page",
     component: ProductPageComponent,
+  },
+  {
+    path: "add-product-page",
+    component: AddProductPageComponent,
   },
 ];
 
