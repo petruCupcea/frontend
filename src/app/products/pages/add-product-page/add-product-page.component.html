@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" [formGroup]="formGroup">
   <div class="swiper-container">
   </div>
   <span class="title-header">
@@ -13,11 +13,11 @@
       <h4>Completați anunțul</h4>
       <h6 class="text-secondary">Categoria / Subcategoria:</h6>
       <div class="category-container form-control-container">
-        <select class="form-select">
+        <select class="form-select" disabled>
           <option selected>{{groupName}}</option>
           <option value="1">One</option>
         </select>
-        <select class="form-select">
+        <select class="form-select" disabled>
           <option selected>{{subcategoryName}}</option>
           <option value="1">One</option>
         </select>
@@ -27,14 +27,18 @@
         <input class="form-check-input" type="radio" name="flexRadioDefault" checked>
         <label class="form-check-label"> Vând</label>
       </div>
+      <h6 class="text-secondary">Nume:</h6>
+      <div class="mb-3 form-control-container">
+        <input class="form-control" formControlName="name">
+      </div>
       <h6 class="text-secondary">Textul anunțului:</h6>
       <div class="mb-3 form-control-container">
-        <textarea class="form-control" rows="5"></textarea>
+        <textarea class="form-control" rows="5" formControlName="description"></textarea>
       </div>
       <h6 class="text-secondary">Preț:</h6>
       <div class="form-control-container price-container">
-        <input class="form-control" type="number">
-        <select class="form-select">
+        <input class="form-control" formControlName="price">
+        <select class="form-select" formControlName="currency">
           <option value="MDL" selected>MDL</option>
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
@@ -76,7 +80,8 @@
       <div class="form-control-container d-flex gap-2">
         <input class="form-check-input" type="checkbox" id="terms">
         <label class="form-check-label" for="terms">
-          Eu am făcut cunoștință cu <span class="link-primary">regulile de adăugare</span> a anunțurilor pe site-ul marketPlace.md precum și cu <span class="link-primary">Ghidul contribuabilului începător</span>.
+          Eu am făcut cunoștință cu <span class="link-primary">regulile de adăugare</span> a anunțurilor pe site-ul
+          marketPlace.md precum și cu <span class="link-primary">Ghidul contribuabilului începător</span>.
         </label>
       </div>
       <button class="btn btn-primary btn-lg">Adaugă anunţ</button>

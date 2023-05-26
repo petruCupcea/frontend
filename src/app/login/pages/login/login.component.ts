@@ -40,6 +40,7 @@ export class LoginComponent extends BaseComponent {
         next: (value) => {
           if (value.status === 'success') {
             this.authenticateService.setLoggedIn(true);
+            this.authenticateService.userId = value.payload?.userId;
             this.router.navigate(['dashboard']).then();
           } else if (value?.status === 'error') {
             this.errorMessage = value.payload.message;

@@ -6,6 +6,7 @@ import { AddCategoryList, AddSubcategoryList, CategoriesList, ProductListCompone
 import { SharedModule } from '../shared';
 import { TransportFilterComponent } from './components';
 import { AddProductPageComponent } from './pages/add-product-page/add-product-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AddProductPageComponent } from './pages/add-product-page/add-product-pa
     CommonModule,
     SharedModule,
     ProductsRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AddCategoryList,

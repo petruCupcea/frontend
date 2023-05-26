@@ -3,6 +3,7 @@ import { takeUntil } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 import { BaseComponent } from '../../../shared';
+import { FormBuilder, FormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'add-product-page',
@@ -15,12 +16,20 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
   groupName: string;
   subcategoryId: string;
   subcategoryName: string;
+  formGroup: UntypedFormGroup;
 
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
+    formBuilder: FormBuilder,
   ) {
     super();
+    this.formGroup = formBuilder.group({
+      name: new FormControl(''),
+      description: new FormControl(''),
+      price: new FormControl(''),
+      currency: new FormControl(''),
+    })
   }
 
 

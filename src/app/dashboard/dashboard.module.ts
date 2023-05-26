@@ -23,6 +23,9 @@ import { SharedModule } from '../shared';
     ProductSmallCardComponent,
   ],
   providers: [],
+  exports: [
+    ProductSmallCardComponent
+  ]
 })
 export class DashboardModule {
 }

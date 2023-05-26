@@ -11,7 +11,7 @@ import { BaseComponent } from '../classes';
 export class AuthenticateService extends BaseComponent {
 
   loggedIn: BehaviorSubject<boolean>;
-
+  userId: number;
 
   constructor(
     private readonly apiRequestService: ApiRequestService,

@@ -11,7 +11,10 @@ export class ApiRequestService {
 
 
   callOperation(operation: string, payload?: any): Observable<any> {
-    return this.httpClient.post('http://localhost:3000/json_processor', {operation: operation, payload: payload});
+    return this.httpClient.post(
+      'http://localhost:3000/json_processor',
+      {operation: operation, payload: payload},
+    );
   }
 
 
