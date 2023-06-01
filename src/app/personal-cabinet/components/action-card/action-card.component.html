@@ -1,6 +1,7 @@
 <div class="product-card d-flex flex-row gap-4 align-items-center bg-light rounded-1 shadow-sm justify-content-between">
   <div class="d-flex flex-row gap-4 align-items-center" (click)="goToProductPage()">
-    <img class="rounded-1" [src]="imageObject?.image"/>
+    <img *ngIf="imageObject?.image" class="rounded-1" [src]="imageObject?.image"/>
+    <img *ngIf="!imageObject?.image" class="rounded-1" src="../../../../assets/images/no-image.png"/>
     <div class="d-flex gap-2 flex-column">
       <h6>{{product?.name}}</h6>
       <p class="text-primary">{{product?.price + ' ' + product?.currency}}</p>

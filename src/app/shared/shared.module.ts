@@ -2,10 +2,13 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AuthenticateService, AuthExpireTriggerService, SessionControlService, SessionTimerService } from './services';
 import { ProductCardComponent } from './components';
+import { NgIf } from '@angular/common';
 
 
 @NgModule({
-  imports: [],
+  imports: [
+    NgIf
+  ],
   declarations: [
     ProductCardComponent,
   ],
