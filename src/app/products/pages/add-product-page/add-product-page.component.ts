@@ -1,10 +1,11 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { takeUntil } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 
-import { BaseComponent } from '../../../shared';
-import { FormBuilder, FormControl, UntypedFormGroup } from '@angular/forms';
+import { AuthenticateService, BaseComponent } from '../../../shared';
 import { ApiRequestService } from '../../../api-module';
+
 
 @Component({
   selector: 'add-product-page',
@@ -17,40 +18,113 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
   groupName: string;
   subcategoryId: string;
   subcategoryName: string;
+  requestInProgress: boolean;
+  imagesAdded: boolean;
+  userProductAdded: boolean;
   formGroup: UntypedFormGroup;
 
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly apiRequestService: ApiRequestService,
+    private readonly router: Router,
+    private readonly authenticateService: AuthenticateService,
     formBuilder: FormBuilder,
   ) {
     super();
     this.formGroup = formBuilder.group({
-      name: new FormControl(''),
-      description: new FormControl(''),
-      price: new FormControl(''),
-      currency: new FormControl(''),
-    })
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required]),
+      currency: new FormControl('', [Validators.required]),
+      images: new FormControl('', [Validators.required]),
+    });
+    this.requestInProgress = false;
   }
 
 
   ngOnInit(): void {
+    this.authenticateService.loggedIn.pipe(takeUntil(this.onDestroy))
+      .subscribe((value: boolean) => {
+        if (!value) {
+          this.navigateToLoginPage();
+        }
+      })
     this.getRouteParams();
   }
 
 
   handleProductAdding() {
-    this.createNewProduct();
+    let product = {
+      name: this.formGroup.get("name").value,
+      description: this.formGroup.get("description").value,
+      price: this.formGroup.get("price").value.toString(),
+      currency: this.formGroup.get("currency").value,
+      groupId: this.groupId,
+      subcategoryId: this.subcategoryId,
+    }
+    if (product.name && product.description && product.price && product.currency) {
+      this.createNewProduct(product);
+    } else {
+      alert('Nu au fost adaugate toate datele necesare. Va rugam sa completati formularul');
+    }
   }
 
 
-  private createNewProduct() {
-    this.apiRequestService.callOperation('create_product')
+  private createNewProduct(product: any) {
+    this.requestInProgress = true;
+    this.apiRequestService.callOperation('create_product', product)
       .pipe(takeUntil(this.onDestroy))
-      .subscribe(() => {
-        //need the id of the product
+      .subscribe((data) => {
+        let createdProductId = data.payload.id?.id;
+        if (createdProductId !== undefined) {
+          this.createUserProduct(createdProductId);
+          this.createProductImages(createdProductId);
+        }
       })
+  }
+
+
+  private createUserProduct(productId: string) {
+    this.apiRequestService.callOperation(
+      'create_user_product',
+      {userId: this.authenticateService.userId, productId: productId},
+    ).pipe(takeUntil(this.onDestroy))
+      .subscribe(() => {
+        this.userProductAdded = true;
+        this.navigateToPersonalCabinet();
+        if (!this.formGroup.get('images').value) {
+          this.imagesAdded = true;
+          this.navigateToPersonalCabinet();
+        }
+      })
+  }
+
+
+  private createProductImages(productId: string) {
+    this.apiRequestService.callOperation(
+      'create_product_images',
+      {}
+    ).pipe(takeUntil(this.onDestroy))
+      .subscribe(() => {
+        this.imagesAdded = true;
+        this.navigateToPersonalCabinet();
+      })
+  }
+
+
+  private navigateToPersonalCabinet() {
+    setTimeout(() => {
+      if (this.userProductAdded && this.imagesAdded) {
+        this.requestInProgress = false;
+        this.router.navigate(['personal/cabinet']).then();
+      }
+    }, 3000);
+  }
+
+
+  private navigateToLoginPage() {
+    this.router.navigate(['login/authenticate']).then();
   }
 
 

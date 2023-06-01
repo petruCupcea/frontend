@@ -37,7 +37,7 @@
       </div>
       <h6 class="text-secondary">Preț:</h6>
       <div class="form-control-container price-container">
-        <input class="form-control" formControlName="price">
+        <input class="form-control" type="number" formControlName="price">
         <select class="form-select" formControlName="currency">
           <option value="MDL" selected>MDL</option>
           <option value="EUR">EUR</option>
@@ -84,7 +84,10 @@
           marketPlace.md precum și cu <span class="link-primary">Ghidul contribuabilului începător</span>.
         </label>
       </div>
-      <button class="btn btn-primary btn-lg">Adaugă anunţ</button>
+      <button class="btn btn-primary btn-lg" [disabled]="requestInProgress" (click)="handleProductAdding()">
+        Adaugă anunţ
+        <div *ngIf="requestInProgress" class="spinner-border spinner-border-sm" role="status"></div>
+      </button>
     </div>
     <div class="info-container">
       <div class="bg-light">

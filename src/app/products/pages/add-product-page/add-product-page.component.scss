@@ -52,6 +52,12 @@
 
     .btn-lg {
       margin-top: 16px;
+
+      .spinner-border {
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+      }
     }
   }
 
