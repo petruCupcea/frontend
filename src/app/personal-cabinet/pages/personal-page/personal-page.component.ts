@@ -40,12 +40,16 @@ export class PersonalPage extends BaseComponent implements OnInit {
   }
 
 
-  private setUserProducts() {
-    this.apiRequestService.callOperation('get_user_products',{userId: this.authenticateService.userId})
+  setUserProducts() {
+    this.userProduct = [];
+    this.apiRequestService.callOperation('get_user_products', {userId: this.authenticateService.userId})
       .pipe(takeUntil(this.onDestroy))
       .subscribe((data) => {
         this.userProduct = data.payload;
-        console.log(this.userProduct);
+        console.log('this.userProduct', this.userProduct);
+        if (this.userProduct.length === 0) {
+          this.productData = [];
+        }
         this.userProduct.map((item) => {
           this.setProductData(item.productId);
         })
@@ -54,11 +58,12 @@ export class PersonalPage extends BaseComponent implements OnInit {
 
 
   private setProductData(productId) {
+    this.productData = [];
     this.apiRequestService.callOperation('get_product_by_id', {productId: productId})
       .pipe(takeUntil(this.onDestroy))
       .subscribe((data) => {
         this.productData.push(data.payload[0]);
-        console.log(this.productData);
+        console.log('this.productData', this.productData);
       })
   }
 

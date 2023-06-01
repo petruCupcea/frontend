@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { BaseComponent } from '../../../shared';
 export class ActionCard extends BaseComponent implements OnInit {
 
   @Input() product: any;
+  @Output() deleteEvent: EventEmitter<boolean>;
   imageObject: any;
 
 
@@ -21,16 +22,45 @@ export class ActionCard extends BaseComponent implements OnInit {
     private readonly router: Router,
   ) {
     super();
+    this.deleteEvent = new EventEmitter<boolean>();
   }
 
 
   ngOnInit() {
-    this.setProductImage()
+    this.setProductImage();
   }
 
 
   goToProductPage() {
     this.router.navigate(['../product-page'], {queryParams: {productId: this.product.id}}).then();
+  }
+
+
+  goToProductForm() {
+    this.router.navigate(['../product-page'], {queryParams: {productId: this.product.id}}).then();
+  }
+
+
+  deleteAction() {
+    this.deleteUserProduct();
+    this.deleteProduct();
+  }
+
+
+  private deleteUserProduct() {
+    this.apiRequestService.callOperation('delete_user_product', {productId: this.product.id})
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(() => {
+        this.emitDeleteEvent();
+      })
+  }
+
+
+  private deleteProduct() {
+    this.apiRequestService.callOperation('delete_product', this.product)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(() => {
+      });
   }
 
 
@@ -42,6 +72,11 @@ export class ActionCard extends BaseComponent implements OnInit {
           this.imageObject = data.payload;
         },
       })
+  }
+
+
+  private emitDeleteEvent() {
+    this.deleteEvent.emit(true);
   }
 
 }

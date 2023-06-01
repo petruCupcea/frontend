@@ -14,7 +14,7 @@
     </div>
     <div *ngIf="productData.length > 0" class="d-flex flex-column gap-2">
       <ng-container *ngFor="let product of productData">
-        <action-card [product]="product"></action-card>
+        <action-card [product]="product" (deleteEvent)="setUserProducts()"></action-card>
       </ng-container>
     </div>
     <h4>Anunțurile favorite.</h4>

@@ -11,6 +11,7 @@
   <div class="main-container">
     <div class="products-container">
       <product-card *ngFor="let item of productList" [product]="item"></product-card>
+      <product-card [product]="productList[0]"></product-card>
     </div>
     <div class="filters-container">
       <div class="subscribe-category bg-light">

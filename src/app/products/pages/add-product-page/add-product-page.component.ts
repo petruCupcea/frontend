@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { BaseComponent } from '../../../shared';
 import { FormBuilder, FormControl, UntypedFormGroup } from '@angular/forms';
+import { ApiRequestService } from '../../../api-module';
 
 @Component({
   selector: 'add-product-page',
@@ -21,6 +22,7 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
+    private readonly apiRequestService: ApiRequestService,
     formBuilder: FormBuilder,
   ) {
     super();
@@ -35,6 +37,20 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRouteParams();
+  }
+
+
+  handleProductAdding() {
+    this.createNewProduct();
+  }
+
+
+  private createNewProduct() {
+    this.apiRequestService.callOperation('create_product')
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(() => {
+        //need the id of the product
+      })
   }
 
 
