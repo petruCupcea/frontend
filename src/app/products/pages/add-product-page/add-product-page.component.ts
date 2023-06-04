@@ -16,6 +16,7 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
 
   groupId: string;
   groupName: string;
+  productId: string;
   subcategoryId: string;
   subcategoryName: string;
   requestInProgress: boolean;
@@ -63,8 +64,11 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
       groupId: this.groupId,
       subcategoryId: this.subcategoryId,
     }
+    if (this.productId !== undefined) {
+      product['id'] = this.productId;
+    }
     if (product.name && product.description && product.price && product.currency) {
-      this.createNewProduct(product);
+      (this.productId === undefined) ? this.createNewProduct(product) : this.editProduct(product);
     } else {
       alert('Nu au fost adaugate toate datele necesare. Va rugam sa completati formularul');
     }
@@ -82,6 +86,18 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
           this.createProductImages(createdProductId);
         }
       })
+  }
+
+
+  private editProduct(product: any) {
+    this.requestInProgress = true;
+    this.apiRequestService.callOperation('update_product', product)
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(() => {
+        this.userProductAdded = true;
+        this.imagesAdded = true;
+        this.navigateToPersonalCabinet();
+      });
   }
 
 
@@ -132,11 +148,44 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
     this.activatedRoute.queryParams.pipe(takeUntil(this.onDestroy)).subscribe({
       next: (params) => {
         this.groupId = params['groupId'];
-        this.groupName = params['groupName'];
+        this.setGroupNameById(this.groupId);
         this.subcategoryId = params['subcategoryId'];
-        this.subcategoryName = params['subcategoryName'];
+        this.setSubcategoryNameById(this.subcategoryId);
+        if (params['productId']) {
+          this.formGroup.get('images').disable();
+          this.productId = params['productId'];
+          this.patchProductToForm(this.productId);
+        }
       }
     });
+  }
+
+
+  private setGroupNameById(id: string) {
+    this.apiRequestService.callOperation('get_group_by_id', {id: id})
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((value) => {
+        this.groupName = value.payload[0].name;
+      });
+  }
+
+
+  private setSubcategoryNameById(id: string) {
+    this.apiRequestService.callOperation('get_subcategory_by_id', {id: id})
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((value) => {
+        this.subcategoryName = value.payload[0].name;
+      });
+  }
+
+
+  private patchProductToForm(productId: string) {
+    this.apiRequestService.callOperation('get_product_by_id', {productId: productId})
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((product) => {
+        console.log(product.payload[0]);
+        this.formGroup.patchValue(product.payload[0]);
+      })
   }
 
 }

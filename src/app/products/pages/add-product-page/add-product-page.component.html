@@ -53,9 +53,10 @@
       <h6 class="text-secondary"><i class="bi bi-info-circle"></i> Imagini:</h6>
       <div class="form-control-container">
         <div class="input-group mb-2">
-          <input type="file"
+          <input formControlName="images"
+                 type="file"
                  class="form-control"
-                 id="inputGroupFile04"
+                 id="inputGroupFile"
                  aria-describedby="inputGroupFileAddon04"
                  aria-label="Upload">
           <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Alege un fișier</button>
@@ -84,7 +85,16 @@
           marketPlace.md precum și cu <span class="link-primary">Ghidul contribuabilului începător</span>.
         </label>
       </div>
-      <button class="btn btn-primary btn-lg" [disabled]="requestInProgress" (click)="handleProductAdding()">
+      <button *ngIf="!productId" class="btn btn-primary btn-lg"
+              [disabled]="requestInProgress"
+              (click)="handleProductAdding()">
+        Adaugă anunţ
+        <div *ngIf="requestInProgress" class="spinner-border spinner-border-sm" role="status"></div>
+      </button>
+      <button *ngIf="!!productId"
+              class="btn btn-primary btn-lg"
+              [disabled]="requestInProgress"
+              (click)="handleProductAdding()">
         Adaugă anunţ
         <div *ngIf="requestInProgress" class="spinner-border spinner-border-sm" role="status"></div>
       </button>

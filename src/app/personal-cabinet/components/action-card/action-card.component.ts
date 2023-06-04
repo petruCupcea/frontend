@@ -37,7 +37,15 @@ export class ActionCard extends BaseComponent implements OnInit {
 
 
   goToProductForm() {
-    this.router.navigate(['../product-page'], {queryParams: {productId: this.product.id}}).then();
+    this.router.navigate(
+      ['../add-product-page'],
+      {
+        queryParams: {
+          productId: this.product.id,
+          groupId: this.product.groupId,
+          subcategoryId: this.product.subcategoryId,
+        }
+      }).then();
   }
 
 
