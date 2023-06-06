@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 
 import {
-  AnnouncesComponent,
+  AnnouncesComponent, DeliveryCardComponent,
   DeliveryComponent,
   GadgetLoversComponent,
   ProductSmallCardComponent,
@@ -25,6 +25,7 @@ import { SharedModule } from '../shared';
     AnnouncesComponent,
     DashboardPage,
     DeliveryComponent,
+    DeliveryCardComponent,
     GadgetLoversComponent,
     RealEstate,
     RecommendationComponent,

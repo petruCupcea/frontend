@@ -1,1 +1,8 @@
-<h5>Produse cu livrare pe Market:</h5>
+<h5 class="title">Produse cu livrare pe Market:</h5>
+<div class="d-flex justify-content-center flex-wrap gap-lg-4 gap-md-4 gap-sm-2">
+  <delivery-card
+    *ngFor="let item of deliveryTitles"
+    [title]="item.name"
+    [url]="item.url">
+  </delivery-card>
+</div>
