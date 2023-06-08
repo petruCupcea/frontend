@@ -1,2 +1,8 @@
 <h5>Din seria imobiliare: </h5>
-<product-card></product-card>
+<div class="box-container d-flex flex-column gap-5 align-items-center">
+  <div class="d-flex justify-content-center gap-1 flex-wrap">
+    <product-card *ngFor="let product of productList" [product]="product"></product-card>
+  </div>
+  <button class="center-btn btn btn-link text-decoration-none">Mai multe <i class="bi bi-arrow-down-circle"></i>
+  </button>
+</div>

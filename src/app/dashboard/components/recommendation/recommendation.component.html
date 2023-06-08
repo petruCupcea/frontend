@@ -1,9 +1,10 @@
-<div class="box-container bg-light">
+<div class="box-container bg-light d-flex flex-column gap-5 align-items-center">
   <span class="title">
     Recomandate
     <i class="bi bi-patch-check"></i>
   </span>
-  <div class="product-container d-flex flex-wrap gap-3 justify-content-center">
+  <div class="product-container d-flex flex-wrap gap-3 justify-content-center flex-wrap">
       <product-small-card *ngFor="let item of products" [product]="item"></product-small-card>
   </div>
+  <button class="btn btn-link text-decoration-none" (click)="setProducts()">Alte recomandări <i class="bi bi-arrow-repeat"></i></button>
 </div>

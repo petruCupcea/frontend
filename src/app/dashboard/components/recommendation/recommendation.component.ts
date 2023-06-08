@@ -28,11 +28,12 @@ export class RecommendationComponent extends BaseComponent implements OnInit {
   }
 
 
-  private setProducts() {
+  setProducts() {
     this.apiRequestService.callOperation('get_recommended_products')
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {
+          console.log(data);
           this.products = data.payload;
         }
       });

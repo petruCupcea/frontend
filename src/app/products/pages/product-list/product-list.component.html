@@ -5,13 +5,35 @@
     <h2>Produse</h2>
     <p class="link-primary" [routerLink]="'../dashboard'">
       <i class="bi bi-arrow-up-left-circle"></i>
-      Produse
+      Acasă
     </p>
   </span>
   <div class="main-container">
-    <div class="products-container">
-      <product-card *ngFor="let item of productList" [product]="item"></product-card>
-      <product-card [product]="productList[0]"></product-card>
+    <div class="d-flex flex-column gap-2 align-items-center">
+      <div class="products-container">
+        <product-card *ngFor="let item of productList" [product]="item"></product-card>
+      </div>
+      <div class="pagination-container">
+        <nav>
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only"></span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
     <div class="filters-container">
       <div class="subscribe-category bg-light">
