@@ -1,9 +1,10 @@
 .main-container {
   display: flex;
   gap: 32px;
-  padding-bottom: 128px;
+  padding-bottom: 64px;
 
   .product-container {
+    max-width: 860px;
     width: 100%;
     padding: 0 16px 16px;
 
@@ -51,5 +52,9 @@
       padding: 16px;
       margin-bottom: 16px;
     }
+  }
+
+  .no-recommended {
+    margin-left: 16px;
   }
 }

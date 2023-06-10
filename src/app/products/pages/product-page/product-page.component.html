@@ -49,7 +49,6 @@
           <p class="text-secondary"><i class="bi bi-chat-left-dots"></i> Propuneți vânzătorului prețul Dvs.</p>
           <button class="price-button btn btn-success">Negociați</button>
         </div>
-        <h5>Anunțuri recomandate:</h5>
       </div>
     </div>
     <div class="product-review">
@@ -78,5 +77,13 @@
         </div>
       </div>
     </div>
+  </div>
+  <h5>Anunțuri recomandate:</h5>
+  <p *ngIf="!recommendedProducts || recommendedProducts?.length === 0"
+     class="text-secondary no-recommended">
+    Ne pare rău nu mai există produse în subcategoria dată
+  </p>
+  <div *ngIf="recommendedProducts && recommendedProducts.length > 0" class="d-flex gap-1">
+    <product-card *ngFor="let item of recommendedProducts" [product]="item"></product-card>
   </div>
 </div>

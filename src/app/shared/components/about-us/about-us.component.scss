@@ -1,0 +1,71 @@
+.my-container {
+  padding: 64px 32px;
+
+  .paragraph {
+    margin-left: 32px;
+    font-size: 18px;
+  }
+
+  .text-card {
+    padding: 16px 32px;
+    border-radius: 8px;
+    max-width: 700px;
+    margin-top: 32px;
+    transition: all 200ms;
+
+    &.go-right {
+      align-self: flex-end;
+    }
+
+    .bi {
+      font-size: 64px;
+    }
+  }
+
+  .text-card:hover {
+    transform: translateY(-10px);
+    transition: all 400ms;
+
+    &.globe {
+      h5, .bi {
+        color: #3498db;
+        transition: all 400ms;
+      }
+    }
+
+    &.list {
+      h5, .bi {
+        color: #2ecc71;
+        transition: all 400ms;
+      }
+    }
+
+    &.pig {
+      h5, .bi {
+        color: #f39c12;
+        transition: all 400ms;
+      }
+    }
+
+    &.chat {
+      h5, .bi {
+        color: #2980b9;
+        transition: all 400ms;
+      }
+    }
+
+    &.visible {
+      h5, .bi {
+        color: #f1c40f;
+        transition: all 400ms;
+      }
+    }
+
+    &.friendly {
+      h5, .bi {
+        color: #27ae60;
+        transition: all 400ms;
+      }
+    }
+  }
+}

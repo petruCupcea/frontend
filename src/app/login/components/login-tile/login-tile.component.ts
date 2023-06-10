@@ -29,4 +29,9 @@ export class LoginTile extends BaseComponent implements OnInit {
       })
   }
 
+
+  logout() {
+
+  }
+
 }

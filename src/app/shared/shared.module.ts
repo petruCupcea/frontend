@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AuthenticateService, AuthExpireTriggerService, SessionControlService, SessionTimerService } from './services';
-import { ProductCardComponent, SearchComponent } from './components';
+import { AboutUsComponent, ProductCardComponent, SearchComponent } from './components';
 import { NgForOf, NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,10 +13,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgForOf
   ],
   declarations: [
+    AboutUsComponent,
     ProductCardComponent,
     SearchComponent,
   ],
   exports: [
+    AboutUsComponent,
     ProductCardComponent,
     SearchComponent,
   ],

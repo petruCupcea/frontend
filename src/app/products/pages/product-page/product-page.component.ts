@@ -19,6 +19,7 @@ export class ProductPageComponent extends BaseComponent implements OnInit {
   favoriteProduct: boolean;
   group: any;
   subcategory: any;
+  recommendedProducts: Array<any>;
 
 
   constructor(
@@ -88,6 +89,21 @@ export class ProductPageComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.subcategory = data.payload[0];
+          this.setRecommendedProducts();
+        },
+      })
+  }
+
+
+  private setRecommendedProducts() {
+    this.apiRequestService.callOperation(
+      'get_recommended_products_by_subcategory',
+      {subcategoryId: this.subcategory.id, productId: this.product.id}
+    ).pipe(takeUntil(this.onDestroy))
+      .subscribe({
+        next: (data) => {
+          this.recommendedProducts = data.payload;
+          console.log(this.recommendedProducts);
         },
       })
   }

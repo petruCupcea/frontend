@@ -13,6 +13,7 @@ import { BaseComponent } from '../../../shared';
 export class GadgetLoversComponent extends BaseComponent implements OnInit {
 
   productList: any;
+  carousel: any;
 
 
   constructor(

@@ -14,4 +14,9 @@ export class DeliveryCardComponent {
   constructor() {
   }
 
+
+  showAlert(value: any) {
+    alert('Ne pare rău pagina "' + value + '" nu a fost adăugată :(');
+  }
+
 }
