@@ -46,7 +46,6 @@ export class PersonalPage extends BaseComponent implements OnInit {
       .pipe(takeUntil(this.onDestroy))
       .subscribe((data) => {
         this.userProduct = data.payload;
-        console.log('this.userProduct', this.userProduct);
         if (this.userProduct.length === 0) {
           this.productData = [];
         }
@@ -63,7 +62,6 @@ export class PersonalPage extends BaseComponent implements OnInit {
       .pipe(takeUntil(this.onDestroy))
       .subscribe((data) => {
         this.productData.push(data.payload[0]);
-        console.log('this.productData', this.productData);
       })
   }
 

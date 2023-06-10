@@ -1,0 +1,44 @@
+.search-container {
+  position: relative;
+
+  .products-container {
+    position: absolute;
+    right: 0;
+    top: 38px;
+    width: 300px;
+    max-height: 400px;
+    z-index: 100;
+    padding: 32px 16px;
+    border-radius: 4px;
+    overflow-y: scroll;
+    border: 1px solid #ced4da;
+
+    .product-search-card {
+      padding: 8px 4px;
+      border-radius: 2px;
+      gap: 16px;
+      transition: all 100ms;
+
+      .product-name {
+        font-size: 14px;
+      }
+
+      .product-price {
+        font-size: 12px;
+      }
+    }
+
+    .product-search-card:hover {
+      transform: translateX(4px);
+      transition: all 100ms;
+
+      .product-price {
+        color: #0d6efd !important;
+      }
+
+      .bi-chevron-right {
+        color: #0d6efd !important;
+      }
+    }
+  }
+}

@@ -45,13 +45,11 @@ export class ProductListComponent extends BaseComponent implements OnInit {
 
 
   private setProductList() {
-    console.log(this.subcategoryId);
     this.apiRequestService.callOperation('get_products_by_subcategory', {id: this.subcategoryId})
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {
           this.productList = data.payload;
-          console.log(this.productList);
         },
       })
   }

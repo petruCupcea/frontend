@@ -33,7 +33,6 @@ export class RecommendationComponent extends BaseComponent implements OnInit {
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
         next: (data) => {
-          console.log(data);
           this.products = data.payload;
         }
       });

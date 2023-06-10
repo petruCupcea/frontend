@@ -48,7 +48,6 @@ export class ProductPageComponent extends BaseComponent implements OnInit {
 
 
   private setProduct() {
-    console.log(this.productId);
     this.apiRequestService.callOperation('get_product_by_id', {productId: this.productId})
       .pipe(takeUntil(this.onDestroy))
       .subscribe({
@@ -67,7 +66,6 @@ export class ProductPageComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.productImages = data.payload;
-          console.log(this.productImages);
         },
       })
   }
@@ -79,7 +77,6 @@ export class ProductPageComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.group = data.payload[0];
-          console.log(this.group);
         },
       })
   }

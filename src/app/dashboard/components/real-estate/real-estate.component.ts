@@ -32,7 +32,6 @@ export class RealEstate extends BaseComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.productList = data.payload;
-          console.log(this.productList);
         },
       })
   }

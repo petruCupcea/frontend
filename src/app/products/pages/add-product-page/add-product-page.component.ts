@@ -183,7 +183,6 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
     this.apiRequestService.callOperation('get_product_by_id', {productId: productId})
       .pipe(takeUntil(this.onDestroy))
       .subscribe((product) => {
-        console.log(product.payload[0]);
         this.formGroup.patchValue(product.payload[0]);
       })
   }

@@ -1,0 +1,20 @@
+<div class="search-container" [formGroup]="formGroup">
+  <input formControlName="search" id="searchInput" class="form-control" type="search" placeholder="Căutare">
+  <div *ngIf="showSearchCard" id="searchBox" class="products-container shadow-lg bg-light d-flex flex-column gap-1">
+    <div *ngIf="products && products.length === 0" class="product-search-card">
+      <p class="text-secondary">Ne pare rău, nu poate fi găsit un produs cu așa nume</p>
+    </div>
+    <ng-container *ngIf="products && products.length > 0">
+      <div
+        class="product-search-card d-flex justify-content-between align-items-center"
+        *ngFor="let item of products"
+        (click)="goToProductPage(item.id)">
+        <div class="d-flex flex-column">
+          <span class="fw-bold product-name">{{item.name}}</span>
+          <span class="product-price text-secondary">{{item.price}}  {{item.currency}}</span>
+        </div>
+        <i class="bi bi-chevron-right text-secondary"></i>
+      </div>
+    </ng-container>
+  </div>
+</div>

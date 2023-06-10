@@ -1,19 +1,24 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AuthenticateService, AuthExpireTriggerService, SessionControlService, SessionTimerService } from './services';
-import { ProductCardComponent } from './components';
-import { NgIf } from '@angular/common';
+import { ProductCardComponent, SearchComponent } from './components';
+import { NgForOf, NgIf } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
-    NgIf
+    NgIf,
+    ReactiveFormsModule,
+    NgForOf
   ],
   declarations: [
     ProductCardComponent,
+    SearchComponent,
   ],
   exports: [
     ProductCardComponent,
+    SearchComponent,
   ],
   providers: [],
   bootstrap: []
