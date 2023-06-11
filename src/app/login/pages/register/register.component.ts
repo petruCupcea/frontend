@@ -14,13 +14,14 @@ import { BaseComponent } from '../../../shared';
 export class RegisterComponent extends BaseComponent implements OnInit {
 
   formGroup: UntypedFormGroup;
-
+  showSuccess: boolean;
 
   constructor(
     private readonly apiRequestService: ApiRequestService,
     formBuilder: FormBuilder,
   ) {
     super();
+    this.showSuccess = false;
     this.formGroup = formBuilder.group({
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
@@ -42,7 +43,13 @@ export class RegisterComponent extends BaseComponent implements OnInit {
     }
     this.apiRequestService.callOperation('create_user', {...this.formGroup.getRawValue()})
       .pipe(takeUntil(this.onDestroy))
-      .subscribe();
+      .subscribe(() => {
+        this.formGroup.reset();
+        this.showSuccess = true;
+        setTimeout(() => {
+          this.showSuccess = false;
+        }, 10000);
+      });
   }
 
 }

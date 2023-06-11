@@ -31,7 +31,8 @@ export class LoginTile extends BaseComponent implements OnInit {
 
 
   logout() {
-
+    this.authenticateService.loggedIn.next(false);
+    this.authenticateService.userId = undefined;
   }
 
 }

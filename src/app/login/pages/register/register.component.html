@@ -43,6 +43,8 @@
             (click)="registerNewUser()">
       Înregistrează-te
     </button>
+
+    <p *ngIf="showSuccess" class="text-success"><i class="bi bi-person-plus-fill"></i>  Utilizatorul a fost adăgaut cu succes. Pentru intra în contul dumneavoastră intrați pe pagina de autentificare și introduceți datele necesare. </p>
   </form>
   <about-us></about-us>
 </div>

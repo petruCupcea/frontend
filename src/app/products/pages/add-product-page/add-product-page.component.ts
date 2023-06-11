@@ -135,7 +135,7 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
         this.requestInProgress = false;
         this.router.navigate(['personal/cabinet']).then();
       }
-    }, 3000);
+    }, 1000);
   }
 
 
