@@ -83,7 +83,7 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
         let createdProductId = data.payload.id?.id;
         if (createdProductId !== undefined) {
           this.createUserProduct(createdProductId);
-          this.createProductImages(createdProductId);
+          // this.createProductImages(createdProductId);
         }
       })
   }
@@ -108,11 +108,11 @@ export class AddProductPageComponent extends BaseComponent implements OnInit {
     ).pipe(takeUntil(this.onDestroy))
       .subscribe(() => {
         this.userProductAdded = true;
-        this.navigateToPersonalCabinet();
-        if (!this.formGroup.get('images').value) {
+        // this.navigateToPersonalCabinet();
+        // if (!this.formGroup.get('images').value) {
           this.imagesAdded = true;
           this.navigateToPersonalCabinet();
-        }
+        // }
       })
   }
 
